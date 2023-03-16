@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies.com</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script></head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Movies.com</a>
+            <div class="d-flex">
+                <h2 class="text-white me-3 my-auto">Welcome {{user.username}}</h2>
+                <a href="/logout" class="btn btn-outline-light me-3 mx-2">Log out</a>
+                <a href="/new_movie" class="btn btn-outline-light">Add a Bad Movie</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row">
+            {% for movie in movies %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-body" style="background-color: #f8f9fa;">
+                        <h4 class="card-title">{{movie.title}}</h4>
+                        <h5 class="card-subtitle mb-2">{{movie.director}}</h5>
+                        <p class="card-text">{{movie.genre}}</p>
+                        <p class="card-text">Posted By: {{movie.user.username}}</p>
+
+                        {%  if session['uid'] == movie.user.id %}
+                        <a href="/edit_movie/{{movie.id}}" class="btn btn-outline-secondary me-2">Edit</a>
+                        <a href="/delete_movie/{{movie.id}}" class="btn btn-outline-danger">Delete</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Movie</title>
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: grey;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Movies.com</a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Welcome {{user.username}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Log out</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                </li>
+            </ul>
+        </div>
+
+        <form action="/save_movie" method="POST">
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" class="form-control" name="title" value="{{movie.title}}">
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-control" name="description" cols="30" rows="10">{{movie.description}}</textarea>
+            </div>
+            <div class="form-group">
+                <label>Year</label>
+                <input type="date" class="form-control" name="year" value="{{movie.year}}">
+            </div>
+            <div class="form-group">
+                <label>Director</label>
+                <input type="text" class="form-control" name="director" value="{{movie.director}}">
+            </div>
+            <div class="form-group">
+                <label>Genre</label>
+                <input type="text" class="form-control" name="genre" value="{{movie.genre}}">
+            </div>
+            <div class="form-group">
+                <label>Title Image</label>
+                <input type="text" class="form-control" name="title_image" value="{{movie.title_image}}">
+                <input type="hidden" name="id" value="{{movie.id}}">
+            </div>
+            <button class="btn btn-primary">Save Page</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and jQuery links -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies.com</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        background-color: lightgray;
+    }
+</style>
+
+<body>
+    <div style="background-color: black;">
+        <h1 style="color: white">Movies.com</h1>
+        <h2 style="color: white; display: inline-block;">Welcome {{user.username}}</h2>
+        <a href="/logout">Log out</a>
+        <a href="/new_movie">add a bad movie</a>
+    </div>
+
+    <div style="background-color: darkmagenta;">
+        {% for movie in movies %}
+        <div style="background-color: plum; display: inline-block;">
+            <h4 style="color: white"> Title: {{movie.title}}</h4>
+            <h4 style="color: white"> Director: {{movie.director}}</h4>
+            <h4 style="color: white"> Genre: {{movie.genre}}</h4>
+            <h4 style="color: white"> Posted By: {{movie.user.username}}</h4>
+            
+            {%  if session['uid'] == movie.user.id %}
+            <a href="/edit_movie/{{movie.id}}">Edit</a>
+            <a href="/delete_movie/{{movie.id}}">Delete</a>
+            {% endif %}
+        </div>
+
+        {% endfor %}
+
+    </div>
+</body>
+
+</html>
